@@ -1,21 +1,29 @@
-pipeline {
-    agent any
-
-    stages {
+ stages {
         stage('initialize') {
             steps {
                 sh 'terraform init'
             }
         }
-        stage('test') {
+        stage('format the code') {
             steps {
-                echo 'Hello test'
+               sh 'terraform fmt'
             }
         }
-         stage('package') {
+         stage('validate') {
             steps {
-                echo 'Hello package'
+                sh 'terraform validate'
             }
         }
-    }
+     stage('plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+        stage('apply') {
+            steps {
+                sh 'terraform apply --auto-approve'
+            }
+        }
+    }        
 }
+ 
