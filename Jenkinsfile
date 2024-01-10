@@ -16,11 +16,6 @@ pipeline {
                 sh 'terraform validate'
             }
         }
-        stage('format'){
-            steps{
-                sh 'terraform fmt'
-            }
-        }
         stage('plan'){
             steps{
                 sh 'terraform plan'
